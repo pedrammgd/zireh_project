@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -39,6 +40,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
+          borderRadius: BorderRadius.circular(45),
         onTap: widget.onPressed ??
             () {
               CameraOrGalleryDialog.chooseCameraOrGallery(
@@ -53,14 +55,16 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
                 },
               );
             },
-        child: SizedBox(
-          height: widget.height,
-          width: widget.width,
-          child: CustomPaint(
-            painter: MyRectangle(),
+        child:  Container(
+          height: 110,
+            width: 110,
+            decoration: BoxDecoration(
+            color: Colors.white,
+              borderRadius: BorderRadius.circular(45)
+            ),
             child:  filePathWidget(),
 
-          ),
+
         ),
       ),
     );
@@ -84,11 +88,12 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
         ],
       );
     } else {
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+      return  ClipRRect(
+        borderRadius: BorderRadius.circular(45),
         child: Image.file(
-          widget.file!,
-          fit: BoxFit.cover,
+            widget.file!,
+            fit: BoxFit.cover,
+
         ),
       );
     }
